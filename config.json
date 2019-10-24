@@ -1,0 +1,132 @@
+{
+	"name": "TestEmBranchingLogic",
+
+	"namespace": "Test\\TestEmBranchingLogic",
+
+	"description": "A module to test complex branching logic in em config",
+
+	"documentation": "README.md",
+
+	"authors": [
+		{
+			"name": "Andrew Martin",
+			"email": "andy123@stanford.edu",
+			"institution": "Stanford"
+		}
+	],
+
+	"permissions": [
+
+	],
+	
+	"enable-every-page-hooks-on-system-pages": false,	
+
+	"links": {
+		"project": [
+
+		],
+		"control-center": [
+
+		]
+	},
+
+	"no-auth-pages": [
+
+	],
+
+	"project-settings": [
+	],
+
+	"system-settings": [
+		{
+			"key": "top-level",
+			"name": "Top Level",
+			"type": "checkbox"
+		},
+		{
+			"key": "countries",
+			"name": "Country",
+			"type": "sub_settings",
+			"repeatable": true,
+			"sub_settings": [
+				{
+					"key": "country-name",
+					"name": "Country Name (on the bottom just to test a different order)",
+					"type": "text"
+				},
+				{
+					"key": "states",
+					"name": "State",
+					"type": "sub_settings",
+					"repeatable": true,
+					"sub_settings": [
+						{
+							"key": "state-name",
+							"name": "State Name",
+							"type": "text"
+						},
+						{
+							"key": "state-top-level",
+							"name": "Top Level is True",
+							"type": "descriptive",
+							"branchingLogic": {
+								"field": "top-level",
+								"op": "=",
+								"value": "1"
+							}
+						},
+						{
+							"key": "cities",
+							"name": "City",
+							"type": "sub_settings",
+							"repeatable": true,
+							"sub_settings": [
+								{
+									"key": "city-name",
+									"name": "City Name",
+									"type": "text"
+								},
+								{
+									"key": "desc-california",
+									"name": "You are in California",
+									"type": "descriptive",
+									"branchingLogic": {
+										"field": "state-name",
+										"op": "=",
+										"value": "California"
+									}
+								},
+																{
+									"key": "desc-usa",
+									"name": "You are in the USA",
+									"type": "descriptive",
+									"branchingLogic": {
+										"field": "country-name",
+										"op": "=",
+										"value": "USA"
+									}
+								},
+								{
+									"key": "city-size",
+									"name": "City Size",
+									"type": "text"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+
+	"crons": [
+
+	],
+
+	"compatibility": {
+		"php-version-min": "",
+		"php-version-max": "",
+		"redcap-version-min": "",
+		"redcap-version-max": ""
+	}
+}
